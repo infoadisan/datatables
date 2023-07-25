@@ -1,0 +1,35 @@
+﻿@using DatatablesCore.Repository.Models;
+@{
+    ViewData["Title"] = "Study List";
+}
+@model IEnumerable<Patient>
+
+<div class="container">
+    <div class="table-responsive">
+        <table id="StudyTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Patient Code</th>
+                    <th>Modality</th>
+                    <th>Study Description</th>
+                    <th>Study Sent Date</th>
+                    <th>History Sent Date</th>
+                    <th>Institution</th>
+                    <th>Radiologist</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/datatables.net/jquery.datatables.js"></script>
+    <script src="~/lib/datatables.net/jquery.datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#StudyTable').DataTable()
+        });
+    </script>
+}
