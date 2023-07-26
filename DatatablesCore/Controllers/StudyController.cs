@@ -1,6 +1,7 @@
 ﻿using DatatablesCore.Repository;
 using DatatablesCore.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace DatatablesCore.Controllers
 {
@@ -29,6 +30,17 @@ namespace DatatablesCore.Controllers
             int pageSize = Convert.ToInt32(Request.Form["length"].FirstOrDefault() ?? "0");
             int skip = Convert.ToInt32(Request.Form["start"].FirstOrDefault() ?? "0");  
             var data = context.Set<Patient>().AsQueryable();
+
+            //get total count of data in table
+            totalRecord= data.Count();
+
+            //search data when search value is found
+            if(!string.IsNullOrEmpty(searchValue) )
+            {
+                data = data.Where(x => x.PatientName.ToLower().Contains(searchValue.ToLower()) || x.PatientCode.ToLower().Contains(searchValue.ToLower()));
+            }
+            
+
 
         }
     }
